@@ -105,7 +105,7 @@ vim.opt.number = true
 -- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+-- vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -969,3 +969,45 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+
+-- Allow clipboard copy paste in neovim
+vim.g.neovide_input_use_logo = 1
+vim.api.nvim_set_keymap('', '<D-v>', '+p<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('!', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('t', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<D-v>', '<C-R>+', { noremap = true, silent = true})
+
+-- Copy
+vim.api.nvim_set_keymap('v', '<D-c>', '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<D-c>', '"+yy', { noremap = true, silent = true })
+
+-- Cut
+vim.api.nvim_set_keymap('v', '<D-x>', '"+d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<D-x>', '"+dd', { noremap = true, silent = true })
+
+-- Enable mouse support
+vim.o.mouse = 'a'
+
+
+-- Map 'jk' to exit insert mode, added more binds for fat fingering.
+vim.api.nvim_set_keymap('i', 'jk', '<Esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'kj', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'fd', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'hj', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'kl', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'fg', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'fj', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'dk', '<Esc>', { noremap = true, silent = true })
+--vim.api.nvim_set_keymap('i', 'ds', '<Esc>', { noremap = true, silent = true })
+
+-- Cursor Effect
+vim.g.neovide_cursor_vfx_mode = "sonicboom"
+
+
+-- Adjust Neovide zoom level
+vim.g.neovide_scale_factor = 0.8  -- Change 0.8 to your desired zoom level
+
+-- Keybindings to adjust Neovide zoom level
+vim.api.nvim_set_keymap('n', '<C-=>', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-->', ':lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>', { noremap = true, silent = true })
